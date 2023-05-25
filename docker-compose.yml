@@ -1,0 +1,23 @@
+version: "3"
+services:
+  chat:
+    image: antamansid/chess-chat
+    ports:
+      - "8001:8001"
+    restart: on-failure
+    tty: true
+  chess:
+    image: antamansid/chess-game
+    ports:
+      - '8002:8002'
+    restart: on-failure
+    tty: true
+  front:
+    image: antamansid/chess-front
+    ports:
+      - '80:80'
+    restart: on-failure
+    tty: true
+    depends_on:
+      - chat
+      - chess
